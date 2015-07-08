@@ -1,0 +1,374 @@
+/* Simple Admin Panel Template 
+*/
+
+/* Global Resets */
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities";
+
+$dred: 	#B61414;
+$yellow:#FDE62F;
+$green: green;
+$llgrey:#f5f5f5;
+$lgrey: #eee;
+$grey:  #e0e0e0;
+$dgrey: #BABABA;
+$ddgrey:#555;
+
+@mixin bb($color, $width : 1px){
+	border: $width solid $color;
+}
+@mixin bc($bg,$color : #fff){
+	background-color: $bg;
+	color: $color;
+}
+@mixin topMenu(){
+	@include clearfix;
+	li{
+		@include float-left;
+		a{
+			@include inline-block;
+			background: transparent;
+			height: 29px;
+			line-height: 29px;
+			font-size: 15px; 
+			color: #555555;
+			text-shadow: 1px 1px 1px #ffffff;
+			padding: 0px 10px;			
+			&:hover{
+				background: url(images/menu-active-arrow.png) top center no-repeat;
+				color: #777;
+			}
+		}
+	}
+
+}
+
+/* I. General Stylings */
+body{
+	line-height: 18px; 
+	font-family: Helvetica, Arial, sans-serif; 
+	font-size: 13px; 
+	color: #555555;
+	background: #eff0ef url(images/bg.png) repeat-x; 
+	min-width: 960px;
+}
+label, input, img, textarea, select, button, a{
+	@include inline-block;
+}
+label, input, textarea, select, button, a{
+	@include transition-property(all);
+	@include transition-duration(0.3s);
+}
+.clear{
+	clear: both;
+}
+/* I.1.  Links */
+a{
+	text-decoration: none;
+	@include bc($ddgrey);
+	padding: 10px 15px;
+	margin: 2px;
+	font-weight: bold;
+	&:hover{
+		background: #333;
+	}
+}
+/* I.2.  Labels & Inputs */
+label{
+	width: 200px;
+	margin: 5px;
+}
+input, textarea, select{
+	@include bc($llgrey,$ddgrey);
+	@include bb($grey);
+	margin: 5px;
+	padding-left: 5px;
+	width: 300px;
+}
+input,select{
+	height: 26px;
+	line-height: 26px;
+}
+input[type="submit"], button{
+	@include bc($ddgrey,#fff);
+	border: none;
+	width: auto;
+	height: auto;
+	padding: 10px;
+	font-size: 0.9em;
+	font-weight: bold;
+	cursor: pointer;
+	&:hover{
+		background: $ddgrey;
+	}
+}
+/* I.3. Tables */
+table{
+	@include bc(#fff,#000);
+	@include bb($dgrey);
+	tr{
+		border-top: 1px solid $grey;
+		th{
+			font-weight: bold;
+			@include bc(#222,#fff);
+			padding: 10px;
+			text-align: center;
+		}
+		td{
+			@include bc(#fff,$ddgrey);
+			@include bb($dgrey);
+			padding: 3px 10px;
+		}
+	}
+}
+/* I.4. Paragraphs */
+p{
+	padding: 10px;
+	margin: 5px;
+}
+p.info{
+	@include bc(#b5daff,#3079ed);
+	@include bb(#3079ed);
+}
+p.success{
+	@include bc(#adff94,#348e18);
+	@include bb(#348e18);
+}
+p.error{
+	@include bc(#FFD8D8,#900000);
+	@include bb(#930000);
+}
+/* Layouts */
+#login{
+	@include bc(#fff,#000);
+	@include bb($dgrey);
+	@include single-box-shadow($dgrey);
+	width: 800px;
+	margin: 180px auto;
+	h1{
+		color: $ddgrey;
+		padding: 15px;
+		margin: 1px;
+		font-size: 1.8em;
+		font-weight: bold;
+	}
+	form{
+		@include clearfix;
+		margin: 15px 140px;
+		label, input, select, p.remarques{
+			margin: 5px 0px 0px 5px;
+			float: left;
+			padding: 0px;
+			height: 25px;
+			line-height: 25px;
+		}
+		label{
+			width: 200px;
+		}
+		input, select{
+			width: 300px;
+		}
+		textarea{
+			height: 300px;
+		}
+		input[type="text"],input[type="password"],select{
+			&:focus{
+				@include bc(#fff,#000);
+				@include bb($grey);
+			}
+		}
+		input[type="submit"]{
+			@include float-right;
+			width: auto;
+			height: auto;
+			line-height: auto;
+			padding: 6px 15px;
+			margin-right: 9px;
+		}
+	}
+}
+#container{
+	background: url(images/center-highlight.png) no-repeat center top;
+	width: 960px;
+	margin: 0px auto;
+
+	#header{
+		.logo {
+			background: transparent;
+		}
+		ul#nav{
+			@include topMenu();
+			//@include navBar($lgrey,$ddgrey,$ddgrey,#fff);
+			border-top: 2px solid $grey;
+		}
+	}
+
+	#content{
+		.infos{
+			margin: 0px;
+			padding: 0px;
+			background: transparent;
+			@include clearfix;
+			p.field, p.value{
+				@include float-left;
+				@include bb($lgrey);
+				padding: 10px;
+				margin: 0px;
+			}
+			p.field{
+				@include bc($llgrey,$ddgrey);
+				width: 200px;
+				margin-left: 50px;
+			}
+			p.value{
+				@include bc(#fff,$ddgrey);
+				width: 600px;
+			}
+			.links{
+				@include float-right;
+				margin-right: 65px;
+			}
+		}
+		h1{
+			@include bc(transparent,$ddgrey);
+			padding: 5px;
+			margin: 5px 0px;
+			font-size: 1.8em;
+			font-weight: bold;
+		}
+		h2{
+			@include bc(transparent,$ddgrey);
+			padding: 5px;
+			margin: 5px 0px;
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+		h3{
+			@include inline-block;
+			@include bc($ddgrey);
+			margin: 2px;
+			margin-left: -1px; 
+			padding: 10px;
+			font-weight: bold;
+		}
+		p.details,div.details{
+			@include bc(#f9f9f9,#111);
+			@include bb(#ddd);
+			margin: 1px 10px 5px 15px;
+			padding: 7px;
+		}
+		a.add_item, a.logout{
+			@include float-right;
+			padding: 10px;
+		}
+		a.add_item{
+			margin-right: 10px;
+			margin-left: -5px;
+		}
+		a.logout{
+			width: 80px;
+			text-align: center;
+			padding: 10px 0px;
+			margin-right: -80px;
+			margin-top: -55px; 
+		}
+		table{
+			width: 940px;
+			margin: 5px auto;
+			tr{
+				width: 100%;
+			}
+		}
+		form{
+			@include clearfix;
+			margin: 5px;
+			label, input, select, textarea, button, p.remarques{
+				margin: 5px 0px 0px 5px;
+				float: left;
+				padding: 0px;
+				padding: 1px 5px;
+			}
+			label, input, select, button, p.remarques{
+				height: 25px;
+				line-height: 25px;
+			}
+			label{
+				width: 220px;
+			}
+			input, select, textarea{
+				width: 390px;
+			}
+			input[type="radio"], input[type="checkbox"]{
+				margin: 11px 5px;
+			}
+			p.remarques{
+				@include bc($yellow,#000);
+				padding: 2px 10px;
+			}
+			textarea{
+				height: 120px;
+				padding: 5px;
+			}
+			input[type="text"],input[type="password"],textarea,select{
+				&:focus{
+					@include bc(#fff,#000);
+					@include bb($grey);
+				}
+			}
+			textarea.full{
+				display: block;
+				clear: both;
+				width: 940px; 
+			}
+			input[type="submit"]{
+				@include float-right;
+				width: auto;
+				height: auto;
+				padding: 10px;
+			}
+		}
+		form.inline{
+			@include inline-block;
+			margin: 0px;
+			padding: 0px;
+			input{
+				margin: 0px 3px;
+			}
+			input[type="submit"]{
+				@include bc($ddgrey);
+				&:hover, &:focus {
+					@include bc(#222);
+				}
+			}
+		}
+		/* DataTables */
+		.dataTables_wrapper{
+			.dataTables_length, .dataTables_filter{
+				@include clearfix;
+				@include float-left;
+				margin-left: 20px;
+				label{
+					width: auto;
+				}
+			}
+			.dataTable{
+				clear: both;
+			}
+			.paginate_disabled_previous, .paginate_disabled_next{
+				display: none;
+			}
+			.dataTables_info{
+				margin: 0px 15px;
+			}
+		}
+	}
+
+	#footer{
+		margin-top: 10px;
+		@include bc($lgrey,#000);
+		border-top: 2px solid $ddgrey;
+		text-align: center;
+		padding: 10px;
+	}
+}

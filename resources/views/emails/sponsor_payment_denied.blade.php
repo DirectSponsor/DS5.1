@@ -1,0 +1,1 @@
+The payment of sponsor <a href="{!! URL::route('sponsors.show',$sponsor->id) !!}">{!!  $sponsor->name  !!}</a> for the project <a href="{!! URL::route('projects.show',$project->id) !!}">{!! $project->name !!}</a> was denied by the recipient <a href="{!! URL::route('recipients.show',$recipient->id) !!}">{!! $recipient->name !!}</a> 
